@@ -40,7 +40,7 @@ add_action( 'after_setup_theme', 'wpcampus_2018_setup_theme', 10 );
 function wpcampus_2018_load_open_sans_weights( $weights ) {
 	return array_merge( $weights, array( 300, 400, 600 ) );
 }
-//add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_2018_load_open_sans_weights' );
+add_filter( 'wpcampus_open_sans_font_weights', 'wpcampus_2018_load_open_sans_weights' );
 
 /**
  * Setup/enqueue styles and scripts for theme.
@@ -50,13 +50,25 @@ function wpcampus_2018_load_open_sans_weights( $weights ) {
 function wpcampus_2018_enqueue_theme() {
 
 	// Set the directories.
-	//$wpcampus_dir     = trailingslashit( get_stylesheet_directory_uri() );
-	//$wpcampus_dir_css = $wpcampus_dir . 'assets/css/';
-	//$wpcampus_dir_js  = $wpcampus_dir . 'assets/js/';
+	$wpcampus_dir     = trailingslashit( get_stylesheet_directory_uri() );
+	$wpcampus_dir_css = $wpcampus_dir . 'assets/build/css/';
+	//$wpcampus_dir_js  = $wpcampus_dir . 'assets/build/js/';
 
 	// Enqueue the base styles and script.
-	//wp_enqueue_style( 'wpcampus-2018', $wpcampus_dir_css . 'styles.min.css', array( 'wpcampus-parent' ), null );
+	wp_enqueue_style( 'wpcampus-2018', $wpcampus_dir_css . 'styles.min.css', array( 'wpcampus-parent' ), null );
 	//wp_enqueue_script( 'wpcampus-2018', $wpcampus_dir_js . 'wpc-2018.min.js', array( 'jquery' ), null );
 
 }
 add_action( 'wp_enqueue_scripts', 'wpcampus_2018_enqueue_theme', 10 );
+
+/**
+ * Get the call for speaker deadline.
+ */
+function wpcampus_2018_get_call_speaker_deadline() {
+	$deadline = get_option( 'wpc_2018_call_for_speakers_deadline' );
+	if ( ! empty( $deadline ) && false !== strtotime( $deadline ) ) {
+		$timezone = get_option( 'timezone_string' ) ?: 'UTC';
+		return new DateTime( $deadline, new DateTimeZone( $timezone ) );
+	}
+	return false;
+}

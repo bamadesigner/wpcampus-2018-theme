@@ -1,0 +1,179 @@
+html.wpc-menu-open,
+html.wpc-menu-open body {
+
+	@media #{$header-menu-bp-closed} {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+#wpc-header {
+	background: $header-bg;
+	padding: 25px 20px;
+	color: $header-color;
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+
+	* {
+		color: inherit;
+	}
+
+	.wpc-logo {
+		width: auto;
+		height: 65px;
+
+		a {
+			display: block;
+		}
+
+		img {
+			display: block;
+			width: auto;
+			height: 65px;
+			margin: 0;
+		}
+	}
+
+	.wpc-menu {
+		display: none;
+		
+		a {
+			display: block;
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				background: darken( $wpc-royal-blue, 10% );
+			}
+		}
+
+		ul {
+			@include reset-ul();
+			font-size: 18px;
+			line-height: 1;
+			font-weight: 300;
+			text-transform: uppercase;
+		}
+	}
+
+	&:before {
+		content: '';
+		background: url('../../images/wpcampus-2018-skyline.png') left top no-repeat;
+		background-size: auto 100%;
+		position: absolute;
+		left: 0;
+		top: -12px;
+		width: 100%;
+		height: 118%;
+		opacity: 0.15;
+		z-index: -1;
+		pointer-events: none;
+	}
+
+	.wpc-toggle-menu {
+		display: block;
+		border: 0;
+		margin: 0;
+		height: auto;
+	}
+
+	.wpc-container {
+		display: flex;
+		flex-wrap: wrap;
+		align-content: center;
+	}
+
+	@media #{$header-menu-bp-closed} {
+
+		&.wpc-menu-open {
+			background: red;
+
+			.wpc-menu {
+				display: block;
+			}
+		}
+	}
+
+	@media #{$header-menu-bp-open} {
+
+		.wpc-logo {
+			order: 2;
+			width: $header-logo-container-width + ($header-logo-container-padding-horiz * 2);
+			height: $header-logo-height;
+
+			img {
+				width: $header-logo-width;
+				height: $header-logo-height;
+				margin: 0 auto;
+			}
+		}
+
+		.wpc-menu {
+			flex-grow: 1;
+			order: 1;
+			text-align: right;
+
+			a {
+				padding: 3px $header-menu-item-padding;
+			}
+
+			ul {
+				display: flex;
+				justify-content: flex-end;
+				font-size: 18px;
+				line-height: $header-logo-height;
+
+				li {
+					margin: 0 0 0 $header-menu-padding;
+				}
+			}
+
+			&.wpc-menu-2 {
+				order: 3;
+				text-align: left;
+
+				ul {
+					justify-content: flex-start;
+
+					li {
+						margin: 0 $header-menu-padding 0 0;
+					}
+				}
+			}
+		}
+
+		.wpc-container {
+			justify-content: center;
+			align-items: stretch;
+		}
+
+		.wpc-toggle-menu {
+			display: none;
+		}
+	}
+}
+
+#wpc-header-actions {
+
+	a {
+		text-decoration: none;
+	}
+
+	strong {
+		font-weight: 600;
+	}
+
+	.wpc-header-action {
+		display: block;
+		background: $wpc-dark-blue;
+		color: #fff;
+		font-size: 1rem;
+		line-height: 1.6;
+		font-weight: 300;
+		text-decoration: none;
+		text-align: center;
+		padding: 10px 20px;
+	}
+}
