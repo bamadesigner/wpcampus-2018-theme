@@ -135,7 +135,7 @@ function wpcampus_2018_print_header_action() {
 	if ( $deadline ) :
 		?>
 		<div id="wpc-header-actions">
-			<a class="wpc-header-action" href="#"><?php printf( __( '%1$sOur %2$scall for speakers%3$s is open until %4$s.%5$s We\'d love to learn how you build higher ed.', 'wpcampus-2018' ), '<strong>', '<span class="underline uppercase">', '</span>', $deadline->format( $deadline_format ), '</strong>' ); ?></a>
+			<a class="wpc-header-action" href="/call-for-speakers/"><?php printf( __( '%1$sOur %2$scall for speakers%3$s is open until %4$s.%5$s We\'d love to learn how you build higher ed.', 'wpcampus-2018' ), '<strong>', '<span class="underline uppercase">', '</span>', $deadline->format( $deadline_format ), '</strong>' ); ?></a>
 		</div>
 	<?php
 	endif;
