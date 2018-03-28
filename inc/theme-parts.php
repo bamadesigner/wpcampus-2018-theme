@@ -152,13 +152,8 @@ function wpcampus_2018_add_mailchimp_to_content( $content ) {
 		return $content;
 	}
 
-	ob_start();
-
 	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
 		wpcampus_print_mailchimp_signup();
 	}
-
-	return $content . ob_get_clean();
-
 }
-add_action( 'the_content', 'wpcampus_2018_add_mailchimp_to_content' );
+add_action( 'wpc_add_after_content', 'wpcampus_2018_add_mailchimp_to_content' );
