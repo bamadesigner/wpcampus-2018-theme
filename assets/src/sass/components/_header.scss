@@ -10,7 +10,7 @@ html.wpc-menu-open body {
 
 #wpc-header {
 	background: $header-bg;
-	padding: 25px 20px;
+	padding: $header-padding-vert $header-padding-horiz;
 	color: $header-color;
 	position: relative;
 	overflow: hidden;
@@ -21,8 +21,6 @@ html.wpc-menu-open body {
 	}
 
 	.wpc-logo {
-		width: auto;
-		height: 65px;
 
 		a {
 			display: block;
@@ -30,8 +28,8 @@ html.wpc-menu-open body {
 
 		img {
 			display: block;
-			width: auto;
-			height: 65px;
+			width: 100%;
+			height: auto;
 			margin: 0;
 		}
 	}
@@ -42,11 +40,6 @@ html.wpc-menu-open body {
 		a {
 			display: block;
 			text-decoration: none;
-
-			&:hover,
-			&:focus {
-				background: darken( $wpc-royal-blue, 10% );
-			}
 		}
 
 		ul {
@@ -55,7 +48,17 @@ html.wpc-menu-open body {
 			line-height: 1;
 			font-weight: 300;
 			text-transform: uppercase;
+
+			li.current-menu-item a,
+			a:hover,
+			a:focus {
+				background: darken( $wpc-royal-blue, 10% );
+			}
 		}
+	}
+
+	.social-media-icons {
+		display: none;
 	}
 
 	&:before {
@@ -74,24 +77,149 @@ html.wpc-menu-open body {
 
 	.wpc-toggle-menu {
 		display: block;
+		background: darken( $wpc-royal-blue, 10% );
 		border: 0;
-		margin: 0;
-		height: auto;
-	}
+		margin: 20px 0 0 0;
+		padding: 0;
+		font-size: 1.3rem;
+		font-weight: 300;
+		height: 45px;
+		line-height: 45px;
+		text-transform: uppercase;
+		
+		.wpc-toggle-bar {
+			display: none;
+		}
 
-	.wpc-container {
-		display: flex;
-		flex-wrap: wrap;
-		align-content: center;
+		&:hover,
+		&:focus {
+			background: $wpc-dark-blue;
+		}
 	}
 
 	@media #{$header-menu-bp-closed} {
 
 		&.wpc-menu-open {
-			background: red;
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 10000;
 
 			.wpc-menu {
 				display: block;
+
+				a {
+					padding: 8px 5px;
+				}
+
+				ul {
+					font-size: 2rem;
+					line-height: 1.4;
+
+					li {
+						display: block;
+						clear: both;
+						margin: 5px 0 0 0;
+
+						/*&.highlight {
+							background: $header-menu-open-highlight-bg;
+							color: $header-menu-open-highlight-color;
+							margin-top: $header-menu-open-highlight-margin-top;
+
+							a {
+								padding: $header-menu-open-highlight-padding-vert $header-menu-open-highlight-padding-horiz;
+							}
+						}*/
+					}
+
+					ul {
+
+						&.sub-menu {
+							padding: 0 0 0 20px;
+							//font-size: 1.5rem;
+							//font-weight: 300;
+							//text-transform: uppercase;
+						}
+					}
+				}
+			}
+
+			.social-media-icons {
+				display: flex;
+				justify-content: flex-start;
+				margin: 30px 0 0;
+				padding: 0;
+				border: 0;
+				text-align: center;
+				overflow: visible;
+
+				li {
+					display: block;
+					float: left;
+					list-style: none;
+					margin: 0 18px 0 0;
+					padding: 0;
+				}
+
+				svg {
+					width: auto;
+					height: 35px;
+					vertical-align: baseline;
+					fill: #fff;
+				}
+
+				a {
+					display: block;
+					height: 35px;
+				}
+			}
+
+			.wpc-logo {
+				margin: 0 0 22px 0;
+				padding: 0 ( $wpc-toggle-bar-total-width + 50px ) 0 0;
+			}
+
+			.wpc-toggle-menu {
+				background: transparent;
+				position: fixed;
+				right: $header-padding-horiz;
+				top: $header-padding-vert;
+				width: $wpc-toggle-bar-total-width;
+				height: $wpc-toggle-bar-total-width;
+				line-height: $wpc-toggle-bar-total-width;
+
+				.wpc-open-menu-label {
+					display: none;
+				}
+
+				.wpc-toggle-bar {
+					display: block;
+					background: $wpc-toggle-bar-bg;
+					width: 100%;
+					height: $wpc-toggle-bar-height;
+					position: absolute;
+					left: 0;
+					top: 40%;
+					transform: rotate(45deg);
+
+					&:before {
+						content: '';
+						background: $wpc-toggle-bar-bg;
+						width: 100%;
+						height: $wpc-toggle-bar-height;
+						position: absolute;
+						left: 0;
+						top: 0;
+						transform: rotate(90deg);
+					}
+				}
+
+				&:hover,
+				&:focus {
+					background: transparent;
+				}
 			}
 		}
 	}
@@ -99,9 +227,14 @@ html.wpc-menu-open body {
 	@media #{$header-menu-bp-open} {
 
 		.wpc-logo {
-			order: 2;
 			width: $header-logo-container-width + ($header-logo-container-padding-horiz * 2);
 			height: $header-logo-height;
+			margin: 0 auto 20px auto;
+
+			a {
+				width: $header-logo-width;
+				margin: 0 auto;
+			}
 
 			img {
 				width: $header-logo-width;
@@ -111,9 +244,7 @@ html.wpc-menu-open body {
 		}
 
 		.wpc-menu {
-			flex-grow: 1;
-			order: 1;
-			text-align: right;
+			display: inline-block;
 
 			a {
 				padding: 3px $header-menu-item-padding;
@@ -121,9 +252,9 @@ html.wpc-menu-open body {
 
 			ul {
 				display: flex;
-				justify-content: flex-end;
+				align-items: center;
 				font-size: 18px;
-				line-height: $header-logo-height;
+				line-height: 26px;
 
 				li {
 					margin: 0 0 0 $header-menu-padding;
@@ -131,11 +262,8 @@ html.wpc-menu-open body {
 			}
 
 			&.wpc-menu-2 {
-				order: 3;
-				text-align: left;
 
 				ul {
-					justify-content: flex-start;
 
 					li {
 						margin: 0 $header-menu-padding 0 0;
@@ -144,18 +272,58 @@ html.wpc-menu-open body {
 			}
 		}
 
-		.wpc-container {
-			justify-content: center;
-			align-items: stretch;
-		}
-
 		.wpc-toggle-menu {
 			display: none;
+		}
+
+		.wpc-container {
+			text-align: center;
+		}
+	}
+
+	@media #{$header-menu-bp-wide-open} {
+
+		.wpc-logo {
+			order: 2;
+			margin: 0;
+		}
+
+		.wpc-menu {
+			display: block;
+			align-content: center;
+			justify-content: center;
+			flex-grow: 1;
+			order: 1;
+			text-align: right;
+
+			ul {
+				justify-content: flex-end;
+				height: $header-logo-height;
+			}
+
+			&.wpc-menu-2 {
+				order: 3;
+				text-align: left;
+
+				ul {
+					justify-content: flex-start;
+				}
+			}
+		}
+
+		.wpc-container {
+			display: flex;
+			//flex-wrap: wrap;
+			align-content: center;
+			justify-content: center;
+			align-items: stretch;
 		}
 	}
 }
 
 #wpc-header-actions {
+	background: $wpc-dark-blue;
+	padding: 5px;
 
 	a {
 		text-decoration: none;
@@ -174,6 +342,6 @@ html.wpc-menu-open body {
 		font-weight: 300;
 		text-decoration: none;
 		text-align: center;
-		padding: 10px 20px;
+		padding: 5px 15px;
 	}
 }

@@ -79,17 +79,21 @@ function wpcampus_2018_print_header() {
 				<img alt="<?php printf( esc_attr__( 'The %1$s conference, where %2$s meets higher education, will take place July 12-14, 2018 in St. Louis, Missouri.', 'wpcampus-2018' ), 'WPCampus', 'WordPress' ); ?>" src="<?php echo $wpcampus_dir; ?>assets/images/wpcampus-2018-logo.png">
 			</a>
 		</div>
+		<button class="wpc-toggle-menu" data-toggle="wpc-header" aria-label="<?php _e( 'Toggle menu', 'wpcampus-2018' ); ?>">
+			<div class="wpc-toggle-bar"></div>
+			<div class="wpc-open-menu-label"><?php _e( 'View menu', 'wpcampus-2018' ); ?></div>
+		</button>
 		<?php
 
 		wpcampus_2018_print_menu( 'wpc-menu-1', __( 'First part of primary menu', 'wpcampus-2018' ), $menu1 );
 
 		wpcampus_2018_print_menu( 'wpc-menu-2', __( 'Second part of primary menu', 'wpcampus-2018' ), $menu2 );
 
+		if ( function_exists( 'wpcampus_print_social_media_icons' ) ) {
+			wpcampus_print_social_media_icons();
+		}
+
 		?>
-		<button class="wpc-toggle-menu" data-toggle="wpc-header" aria-label="<?php _e( 'Toggle menu', 'wpcampus-2018' ); ?>">
-			<div class="wpc-open-menu-label"><?php _e( 'Menu', 'wpcampus-2018' ); ?></div>
-			<div class="wpc-close-menu-label"><?php _e( 'Close', 'wpcampus-2018' ); ?></div>
-		</button>
 	</div>
 	<?php
 

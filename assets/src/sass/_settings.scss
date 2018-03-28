@@ -36,12 +36,23 @@ $header-logo-width: 312px;
 $header-logo-height: 80px;
 $header-menu-padding: 5px;
 $header-menu-item-padding: 8px;
+$header-padding-horiz: 20px;
+$header-padding-vert: 25px;
 
-$header-menu-bp-width: 600px;
+$header-menu-bp-width: 540px;
 $header-menu-bp-closed: "screen and (max-width: " + ( $header-menu-bp-width - 1px ) + ");";
 $header-menu-bp-open: "screen and (min-width: " + $header-menu-bp-width + ");";
 //@media #{$header-menu-bp-open} {}
 
+$header-menu-bp-wide-open-width: 820px;
+$header-menu-bp-wide-open: "screen and (min-width: " + $header-menu-bp-wide-open-width + ");";
+//@media #{$header-menu-bp-wide} {}
+
 $mc-signup-bp-width: 700px;
 $mc-signup-bp-open: "screen and (min-width: " + $mc-signup-bp-width + ");";
 //@media #{$mc-signup-bp-open} {}
+
+$wpc-toggle-bar-bg: #fff;
+$wpc-toggle-bar-width: 25px;
+$wpc-toggle-bar-height: 5px;
+$wpc-toggle-bar-total-width: $wpc-toggle-bar-width + 10px;
