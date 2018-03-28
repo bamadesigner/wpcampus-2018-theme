@@ -76,7 +76,16 @@ function wpcampus_2018_print_header() {
 	<div class="wpc-container" role="navigation">
 		<div class="wpc-logo">
 			<a href="/">
-				<img alt="<?php printf( esc_attr__( 'The %1$s conference, where %2$s meets higher education, will take place July 12-14, 2018 in St. Louis, Missouri.', 'wpcampus-2018' ), 'WPCampus', 'WordPress' ); ?>" src="<?php echo $wpcampus_dir; ?>assets/images/wpcampus-2018-logo.png">
+				<?php
+
+				if ( is_front_page() ) :
+					?>
+					<h1 class="for-screen-reader"><?php printf( __( '%1$s 2018 Conference: Where %2$s Meets Higher Education', 'wpcampus-2018' ), 'WPCampus', 'WordPress' ); ?></h1>
+					<?php
+				endif;
+
+				?>
+				<img alt="<?php printf( esc_attr__( 'The %1$s 2018 conference, where %2$s meets higher education, will take place July 12-14, 2018 in St. Louis, Missouri.', 'wpcampus-2018' ), 'WPCampus', 'WordPress' ); ?>" src="<?php echo $wpcampus_dir; ?>assets/images/wpcampus-2018-logo.png">
 			</a>
 		</div>
 		<button class="wpc-toggle-menu" data-toggle="wpc-header" aria-label="<?php _e( 'Toggle menu', 'wpcampus-2018' ); ?>">
