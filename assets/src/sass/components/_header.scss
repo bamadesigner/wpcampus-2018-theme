@@ -335,6 +335,13 @@ html.wpc-menu-open body {
 		font-weight: 600;
 	}
 
+	.highlight-button {
+		background: #900;
+		color: #fff;
+		padding: 2px 5px;
+		margin: 0 2px;
+	}
+
 	.wpc-header-action {
 		display: block;
 		background: $wpc-dark-blue;
@@ -345,5 +352,12 @@ html.wpc-menu-open body {
 		text-decoration: none;
 		text-align: center;
 		padding: 5px 15px;
+
+		&:hover {
+
+			.highlight-button {
+				text-decoration: underline;
+			}
+		}
 	}
 }
