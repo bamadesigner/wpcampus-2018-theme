@@ -295,6 +295,7 @@ html.wpc-menu-open body {
 			flex-grow: 1;
 			order: 1;
 			text-align: right;
+			padding: 0 15px 0 0;
 
 			ul {
 				justify-content: flex-end;
@@ -304,6 +305,7 @@ html.wpc-menu-open body {
 			&.wpc-menu-2 {
 				order: 3;
 				text-align: left;
+				padding: 0 0 0 15px;
 
 				ul {
 					justify-content: flex-start;

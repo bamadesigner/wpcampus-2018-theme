@@ -44,7 +44,7 @@ $header-menu-bp-closed: "screen and (max-width: " + ( $header-menu-bp-width - 1p
 $header-menu-bp-open: "screen and (min-width: " + $header-menu-bp-width + ");";
 //@media #{$header-menu-bp-open} {}
 
-$header-menu-bp-wide-open-width: 820px;
+$header-menu-bp-wide-open-width: 930px;
 $header-menu-bp-wide-open: "screen and (min-width: " + $header-menu-bp-wide-open-width + ");";
 //@media #{$header-menu-bp-wide} {}
 

@@ -53,22 +53,32 @@ function wpcampus_2018_print_header() {
 			'current' => is_page( 'about' ),
 		),
 		array(
-			'href'    => '/speakers/',
+			'href'    => '/tickets/',
+			'label'   => __( 'Tickets', 'wpcampus-2018' ),
+			'current' => is_page( 'tickets' ),
+		),
+		array(
+			'href'    => '/call-for-speakers/',
 			'label'   => __( 'Speakers', 'wpcampus-2018' ),
-			'current' => is_page( 'speakers' ),
+			'current' => is_page( 'call-for-speakers' ),
 		),
 	);
 
 	$menu2 = array(
 		array(
-			'href'    => '/venue/',
-			'label'   => __( 'St. Louis', 'wpcampus-2018' ),
+			'href'    => '/attendees/',
+			'label'   => __( 'Attendees', 'wpcampus-2018' ),
 			'current' => is_page( 'venue' ),
 		),
 		array(
 			'href'    => '/sponsors/',
 			'label'   => __( 'Sponsors', 'wpcampus-2018' ),
 			'current' => is_page( 'sponsors' ),
+		),
+		array(
+			'href'    => '/contact/',
+			'label'   => __( 'Contact', 'wpcampus-2018' ),
+			'current' => is_page( 'contact' ),
 		),
 	);
 
