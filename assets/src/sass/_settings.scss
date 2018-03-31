@@ -48,10 +48,6 @@ $header-menu-bp-wide-open-width: 930px;
 $header-menu-bp-wide-open: "screen and (min-width: " + $header-menu-bp-wide-open-width + ");";
 //@media #{$header-menu-bp-wide} {}
 
-$mc-signup-bp-width: 700px;
-$mc-signup-bp-open: "screen and (min-width: " + $mc-signup-bp-width + ");";
-//@media #{$mc-signup-bp-open} {}
-
 $wpc-toggle-bar-bg: #fff;
 $wpc-toggle-bar-width: 25px;
 $wpc-toggle-bar-height: 5px;
