@@ -30,6 +30,22 @@ function wpcampus_2018_setup_theme() {
 add_action( 'after_setup_theme', 'wpcampus_2018_setup_theme', 10 );
 
 /**
+ * Modify theme components.
+ *
+ * Runs in "wp" action since this is first
+ * hook available after WP object is setup
+ * and we can use conditional tags.
+ */
+function wpcampus_2018_setup_theme_parts() {
+
+	// Don't print MailChimp signup on the application.
+	if ( is_page( 'call-for-speakers/application' ) ) {
+		remove_action( 'wpc_add_after_content', 'wpcampus_print_mailchimp_signup' );
+	}
+}
+add_action( 'wp', 'wpcampus_2018_setup_theme_parts', 10 );
+
+/**
  * Make sure the Open Sans
  * font weights we need are added.
  *

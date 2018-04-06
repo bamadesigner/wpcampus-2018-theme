@@ -151,19 +151,3 @@ function wpcampus_2018_print_header_action() {
 	endif;
 }
 add_action( 'wpc_add_before_body', 'wpcampus_2018_print_header_action', 1 );
-
-/**
- * Add the Mailchimp signup form to bottom of all content.
- */
-function wpcampus_2018_add_mailchimp_to_content( $content ) {
-
-	// Not on the application.
-	if ( is_page( 'call-for-speakers/application' ) ) {
-		return $content;
-	}
-
-	if ( function_exists( 'wpcampus_print_mailchimp_signup' ) ) {
-		wpcampus_print_mailchimp_signup();
-	}
-}
-add_action( 'wpc_add_after_content', 'wpcampus_2018_add_mailchimp_to_content' );
