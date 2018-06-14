@@ -13,7 +13,7 @@ html.wpc-menu-open body {
 	padding: $header-padding-vert $header-padding-horiz;
 	color: $header-color;
 	position: relative;
-	overflow: hidden;
+	overflow: visible;
 	z-index: 0;
 
 	* {
@@ -49,10 +49,25 @@ html.wpc-menu-open body {
 			font-weight: 300;
 			text-transform: uppercase;
 
-			li.current-menu-item a,
+			li {
+				&:hover,
+				&:focus {
+					z-index: 100;
+				}
+			}
+
+			li.current-menu-item > a,
 			a:hover,
 			a:focus {
 				background: darken( $wpc-royal-blue, 10% );
+			}
+
+			&.sub-menu {
+				li.current-menu-item > a,
+				a:hover,
+				a:focus {
+					background: darken( $wpc-royal-blue, 10% );
+				}
 			}
 		}
 	}
@@ -63,13 +78,13 @@ html.wpc-menu-open body {
 
 	&:before {
 		content: '';
-		background: url('../../images/wpcampus-2018-skyline.png') left top no-repeat;
-		background-size: auto 100%;
+		background: url('../../images/wpcampus-2018-skyline.png') left -12px no-repeat;
+		background-size: auto 118%;
 		position: absolute;
 		left: 0;
-		top: -12px;
+		top: 0;
 		width: 100%;
-		height: 118%;
+		height: 100%;
 		opacity: 0.15;
 		z-index: -1;
 		pointer-events: none;
@@ -256,8 +271,51 @@ html.wpc-menu-open body {
 				font-size: 18px;
 				line-height: 26px;
 
+				&.sub-menu {
+					display: none;
+					position: absolute;
+					left: 0;
+					top: 100%;
+					height: auto;
+					min-width: 100%;
+					margin: 0;
+					padding: 0;
+					background: #fff;
+					color: $body-font-color;
+					text-align: left;
+
+					li {
+						margin: 0;
+					}
+				}
+
 				li {
 					margin: 0 0 0 $header-menu-padding;
+					position: relative;
+					
+					&:hover,
+					&:focus {
+						
+						.sub-menu {
+							display: block;
+						}
+					}
+				}
+
+				li.current-page-ancestor > a,
+				li.current-menu-parent > a,
+				li.current-menu-item > a,
+				a:hover,
+				a:focus {
+					background: darken( $wpc-royal-blue, 10% );
+				}
+
+				&.sub-menu {
+					li.current-menu-item > a,
+					a:hover,
+					a:focus {
+						background: rgba( #000, 0.05 );
+					}
 				}
 			}
 

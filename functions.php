@@ -15,9 +15,9 @@ function wpcampus_2018_setup_theme() {
 	load_theme_textdomain( 'wpcampus-2018', get_stylesheet_directory() . '/languages' );
 
 	// Register the nav menus.
-	// TODO: Do we need this?
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'wpcampus-2018' ),
+		'primary1' => __( 'Primary Menu 1', 'wpcampus-2018' ),
+		'primary2' => __( 'Primary Menu 2', 'wpcampus-2018' ),
 	));
 
 	/*
