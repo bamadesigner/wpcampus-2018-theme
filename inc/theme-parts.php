@@ -14,7 +14,7 @@ function wpcampus_2018_print_menu( $menu_id, $menu_label ) {
 
 	if ( ! empty( $menu ) ) {
 		?>
-		<nav class="wpc-menu wpc-menu-<?php echo $menu_id; ?>" role="navigation" aria-label="<?php esc_attr_e( $menu_label ); ?>">
+		<nav class="wpc-menu wpc-menu-<?php echo $menu_id; ?>" aria-label="<?php esc_attr_e( $menu_label ); ?>">
 			<?php echo $menu; ?>
 		</nav>
 		<?php
@@ -69,15 +69,86 @@ add_action( 'wpc_add_to_header', 'wpcampus_2018_print_header', 10 );
  */
 function wpcampus_2018_print_header_action() {
 
-	$deadline = wpcampus_2018_get_call_speaker_deadline();
-	$deadline_format = 'F j, Y';
+	//$deadline = wpcampus_2018_get_call_speaker_deadline();
+	//$deadline_format = 'F j, Y';
 
-	if ( $deadline ) :
+	//if ( $deadline ) :
 		?>
-		<div id="wpc-header-actions">
-			<a class="wpc-header-action" href="/call-for-speakers/"><?php printf( __( '%1$sOur %2$scall for speakers%3$s is open until %4$s.%5$s We\'d love to learn how you build higher ed.', 'wpcampus-2018' ), '<strong>', '<span class="highlight-button uppercase">', '</span>', $deadline->format( $deadline_format ), '</strong>' ); ?></a>
+		<div id="wpc-header-actions" role="complementary">
+			<button class="wpc-header-action wpc-subscribe-open" title="<?php printf( esc_attr__( 'Subscribe to the %s newsletter', 'wpcampus-2018' ), "WPCampus" ); ?>"><?php printf( __( '%1$sJoin the %2$s mailing list%3$s to receive email updates about the WPCampus community and conferences.', 'wpcampus-2018' ), '<span class="underline">', 'WPCampus', '</span>' ); ?></button>
 		</div>
-	<?php
-	endif;
+		<?php
+	//endif;
 }
-add_action( 'wpc_add_before_body', 'wpcampus_2018_print_header_action', 1 );
+//add_action( 'wpc_add_before_body', 'wpcampus_2018_print_header_action', 1 );
+
+function wpcampus_2018_filter_breadcrumbs( $crumbs ) {
+
+	$is_feedback = is_page( 'feedback' );
+
+	if ( is_singular( 'schedule' ) || is_page( 'speakers' ) || $is_feedback ) {
+
+		$new_crumbs = array();
+
+		foreach( $crumbs as $key => $crumb ) {
+
+			if ( ! is_numeric( $key ) ) {
+				$new_crumbs[ $key ] = $crumb;
+			} else {
+				$new_crumbs[] = $crumb;
+			}
+
+			// Add schedule items after home.
+			if ( 'home' === $key ) {
+
+				$new_crumbs[] = array(
+					'url'   => '/schedule/',
+					'label' => __( 'Schedule', 'wpcampus-2018' ),
+				);
+
+				// Add session page.
+				if ( $is_feedback ) {
+
+					// Get the post.
+					$session = get_query_var( 'session' );
+
+					// Get post object.
+					if ( is_numeric( $session ) ) {
+						$session_post = get_post( $session );
+					} else {
+						$session_post = wpcampus_network()->get_post_by_name( $session, 'schedule' );
+					}
+
+					// Make sure its a valid session.
+					if ( ! empty( $session_post->ID ) ) {
+
+						// Make sure its a session.
+						$event_type = get_post_meta( $session_post->ID, 'event_type', true );
+						if ( 'session' == $event_type ) {
+
+							$new_crumbs[] = array(
+								'url'   => get_permalink( $session_post->ID ),
+								'label' => get_the_title( $session_post->ID ),
+							);
+						}
+					}
+				}
+			}
+		}
+
+		// Change feedback label.
+		if ( $is_feedback ) {
+			$new_crumbs['current']['label'] = __( 'Feedback', 'wpcampus-2018' );
+		}
+
+		return $new_crumbs;
+	}
+
+	// If only 2 crumbs, remove the crumbs.
+	/*if ( count( $crumbs ) < 3 ) {
+		$crumbs = array();
+	}*/
+
+	return $crumbs;
+}
+add_filter( 'wpcampus_breadcrumbs', 'wpcampus_2018_filter_breadcrumbs' );

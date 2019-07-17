@@ -2,7 +2,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cleanCSS = require('gulp-clean-css');
 const gulp = require('gulp');
 const mergeMediaQueries = require('gulp-merge-media-queries');
-//const minify = require('gulp-minify');
+const minify = require('gulp-minify');
 const notify = require('gulp-notify');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
@@ -41,7 +41,7 @@ gulp.task('sass', function() {
 });
 
 // Take care of JS.
-/*gulp.task('js',function() {
+gulp.task('js',function() {
 	gulp.src(src.js)
 		.pipe(minify({
 			mangle: false,
@@ -52,14 +52,14 @@ gulp.task('sass', function() {
 		}))
 		.pipe(gulp.dest(dest.js))
 		.pipe(notify('WPC 2018 JS compiled'));
-});*/
+});
 
 // Compile all the things.
-gulp.task('compile',['sass']);
+gulp.task('compile',['sass','js']);
 
 // I've got my eyes on you(r file changes).
-gulp.task('watch',function() {
-	//gulp.watch(src.js,['js']);
+gulp.task('watch',['default'],function() {
+	gulp.watch(src.js,['js']);
 	gulp.watch(src.sass,['sass']);
 });
 

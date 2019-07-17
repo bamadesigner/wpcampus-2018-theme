@@ -1,10 +1,7 @@
 @import "settings";
 @import "mixins";
 
-@import "components/header";
+@import "components/typography";
+@import "components/main";
 
-#wpc-content {
-	#mc_embed_signup {
-		margin: 2.5rem 0 1rem 0;
-	}
-}
+@import "components/header";

@@ -4,7 +4,7 @@ html.wpc-menu-open body {
 	@media #{$header-menu-bp-closed} {
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
+		overflow: scroll;
 	}
 }
 
@@ -14,7 +14,7 @@ html.wpc-menu-open body {
 	color: $header-color;
 	position: relative;
 	overflow: visible;
-	z-index: 0;
+	z-index: 1;
 
 	* {
 		color: inherit;
@@ -121,6 +121,7 @@ html.wpc-menu-open body {
 			width: 100%;
 			height: 100%;
 			z-index: 10000;
+			overflow: scroll;
 
 			.wpc-menu {
 				display: block;
@@ -402,6 +403,8 @@ html.wpc-menu-open body {
 
 	.wpc-header-action {
 		display: block;
+		height: auto;
+		min-height: 40px;
 		background: $wpc-dark-blue;
 		color: #fff;
 		font-size: 1rem;

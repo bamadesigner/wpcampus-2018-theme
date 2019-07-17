@@ -2,6 +2,9 @@
 $wpc-dark-blue: #2e3641;
 $wpc-royal-blue: #1159bd;
 $wpc-red: #aa0000; //170,0,0
+$wpc-green: #15552b;
+$wpc-gray-transp: rgba(0,0,0,0.05);
+$wpc-green-transp: rgba( $wpc-green, 0.1 );
 //$link-color: $wpc-royal-blue;
 
 // FONTS
@@ -11,8 +14,9 @@ $wpc-red: #aa0000; //170,0,0
 //$body-font-family: $open_sans;
 
 // Layout
-//$wpc-container-max-width: 920px;
-//$container-max-width: 920px;
+$wpc-container-max-width: 920px;
+$wpc-container-max-width-bp: "screen and (min-width: " + $wpc-container-max-width + ");";
+//@media #{$wpc-container-max-width-bp} {}
 
 // Body
 $body-font-color: #222;
